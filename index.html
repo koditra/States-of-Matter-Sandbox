@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Molecular Motion Sandbox</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="gradient-mesh">
+  <header class="app-header shadow-soft">
+    <div class="header-main">
+      <div>
+        <p class="eyebrow">Interactive Science Sandbox</p>
+        <h1>Molecular Motion Sandbox</h1>
+        <p class="subtitle">Explore how particles move, attract, and trade energy they change state of matter.</p>
+      </div>
+      <div class="state-pills" aria-label="Current state and energy">
+        <span class="pill pill-state" id="state-label">State: Solid</span>
+        <span class="pill pill-energy">
+          Energy level
+          <span class="energy-bar" aria-hidden="true">
+            <span class="energy-fill" id="energy-fill"></span>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="phase-grid" aria-label="Phase changes overview">
+      <div class="phase-card" data-phase="melting">
+        <h2>Melting</h2>
+        <p>Solid → Liquid as particles gain energy and loosen their structure.</p>
+      </div>
+      <div class="phase-card" data-phase="freezing">
+        <h2>Freezing</h2>
+        <p>Liquid → Solid as particles lose energy and lock into place.</p>
+      </div>
+      <div class="phase-card" data-phase="vaporization">
+        <h2>Vaporization</h2>
+        <p>Liquid → Gas as particles escape attractive forces.</p>
+      </div>
+      <div class="phase-card" data-phase="condensation">
+        <h2>Condensation</h2>
+        <p>Gas → Liquid as particles slow down and cluster.</p>
+      </div>
+      <div class="phase-card" data-phase="sublimation">
+        <h2>Sublimation</h2>
+        <p>Solid → Gas with a direct leap in energy.</p>
+      </div>
+      <div class="phase-card" data-phase="deposition">
+        <h2>Deposition</h2>
+        <p>Gas → Solid as energy is rapidly removed.</p>
+      </div>
+      <div class="phase-card" data-phase="ionization">
+        <h2>Ionization</h2>
+        <p>Gas → Plasma as particles are stripped into charged ions.</p>
+      </div>
+      <div class="phase-card" data-phase="recombination">
+        <h2>Recombination</h2>
+        <p>Plasma → Gas as ions recapture electrons.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- Left: Controls & legend -->
+    <section class="control-panel shadow-soft" aria-label="Simulation controls">
+      <h2>Control the state of matter</h2>
+      <p class="panel-intro">Use the phase change buttons to move between states. Watch how motion, attraction, and energy respond.</p>
+
+      <div class="particle-count">
+        <label for="particle-slider">Number of particles</label>
+        <div class="particle-slider-row">
+          <input type="range" id="particle-slider" min="20" max="220" step="20" value="120" />
+          <span id="particle-count-label">120</span>
+        </div>
+      </div>
+
+      <h3>Phase changes</h3>
+      <div class="phase-buttons">
+        <button class="btn btn-phase" data-phase="melting">Melting</button>
+        <button class="btn btn-phase" data-phase="freezing">Freezing</button>
+        <button class="btn btn-phase" data-phase="vaporization">Vaporization</button>
+        <button class="btn btn-phase" data-phase="condensation">Condensation</button>
+        <button class="btn btn-phase" data-phase="sublimation">Sublimation</button>
+        <button class="btn btn-phase" data-phase="deposition">Deposition</button>
+        <button class="btn btn-phase" data-phase="ionization">Ionization</button>
+        <button class="btn btn-phase" data-phase="recombination">Recombination</button>
+      </div>
+
+      <div class="current-phase-label" aria-live="polite">
+        Current phase: <span id="current-phase-text">None (direct state)</span>
+      </div>
+
+      <h3>Legend</h3>
+      <dl class="legend">
+        <div class="legend-row">
+          <dt><span class="dot dot-solid"></span> Solid</dt>
+          <dd>Tightly packed particles with strong attraction and low energy.</dd>
+        </div>
+        <div class="legend-row">
+          <dt><span class="dot dot-liquid"></span> Liquid</dt>
+          <dd>Particles slide past each other, staying close but mobile.</dd>
+        </div>
+        <div class="legend-row">
+          <dt><span class="dot dot-gas"></span> Gas</dt>
+          <dd>Particles spread out with weak attraction and high energy.</dd>
+        </div>
+        <div class="legend-row">
+          <dt><span class="dot dot-plasma"></span> Plasma</dt>
+          <dd>Super-energized, glowing charged particles with very high energy.</dd>
+        </div>
+        <div class="legend-row">
+          <dt><span class="trail-example"></span> Energy trails</dt>
+          <dd>Brighter, longer trails show higher kinetic energy.</dd>
+        </div>
+      </dl>
+
+      <h3>Magnifying glass</h3>
+      <p class="panel-intro">Move your mouse over the sandbox to drag the magnifier. It reveals particle detail and local energy.</p>
+      <label class="toggle-label">
+        <input type="checkbox" id="magnifier-toggle" checked />
+        <span>Enable magnifying glass</span>
+      </label>
+    </section>
+
+    <!-- Right: Simulation + magnifier overlay -->
+    <section class="simulation-panel" aria-label="Molecular motion sandbox">
+      <div class="simulation-shell gradient-border shadow-dramatic">
+        <div id="canvas-container" class="canvas-container" aria-hidden="true"></div>
+        <div class="simulation-overlay">
+          <p class="overlay-tip">Tip: Click phase buttons to animate transitions between states.</p>
+        </div>
+        <div class="magnifier" id="magnifier" aria-hidden="true">
+          <div class="magnifier-glow"></div>
+          <div class="magnifier-label">Close-up view</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="app-footer">
+    <p>Built as a molecular motion sandbox: not to scale, but true to the science of energy, attraction, and state changes.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.3/lib/p5.min.js"></script>
+  <script src="script.js"></script>
+</body>
