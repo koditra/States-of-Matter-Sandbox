@@ -1,5 +1,7 @@
 const container = document.getElementById("container");
 const energyInfo = document.getElementById("energyInfo");
+const motionInfo = document.getElementById("motionInfo");
+const attractionInfo = document.getElementById("attractionInfo");
 
 // Cache container dimensions for performance
 let containerWidth = container.clientWidth;
@@ -50,6 +52,20 @@ const stateEnergy = {
     liquid: "Medium",
     gas: "High",
     plasma: "Very High"
+};
+
+const stateMotion = {
+    solid: "Vibrates in place",
+    liquid: "Slides past each other",
+    gas: "Moves freely and randomly",
+    plasma: "Moves extremely fast and chaotic"
+};
+
+const stateAttraction = {
+    solid: "Very Strong Bonds",
+    liquid: "Medium Strength Bonds",
+    gas: "Weak Attraction",
+    plasma: "No Bonds (Ionized Particles)"
 };
 
 const stateSpeeds = {
@@ -354,6 +370,8 @@ function animate() {
         speed = stateSpeeds[currentState]; // reset speed to current state
         updateParticleColors();
         energyInfo.textContent = "Energy: " + stateEnergy[currentState];
+        motionInfo.textContent = "Motion: " + stateMotion[currentState];
+        attractionInfo.textContent = "Attraction: " + stateAttraction[currentState];
     }
 
     requestAnimationFrame(animateWrapper);

@@ -27,6 +27,7 @@ button {
 
 button:hover {
     background: #555;
+    transform: translateY(-2px);
 }
 
 .container { /* the box where the particles will be */
@@ -103,4 +104,24 @@ button:hover {
     pointer-events: none;
     z-index: 20; /* below magnifier but above originals */
     transform: translate(-50%, -50%);
+}
+
+.home-button {
+    position: fixed;       /* stays in place */
+    top: 15px;
+    left: 15px;
+    padding: 10px 18px;
+    background: #222;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 1000;         /* above everything */
+    transition: 0.3s ease;
+}
+
+.home-button:hover {
+    background: #444;
+    transform: translateY(-2px);
 }
